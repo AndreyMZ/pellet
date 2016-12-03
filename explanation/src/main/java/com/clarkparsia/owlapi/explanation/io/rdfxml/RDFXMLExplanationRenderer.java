@@ -7,6 +7,7 @@
 package com.clarkparsia.owlapi.explanation.io.rdfxml;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.HashSet;
 import java.util.Set;
@@ -37,11 +38,11 @@ import com.clarkparsia.owlapiv3.OWL;
 public class RDFXMLExplanationRenderer implements ExplanationRenderer {
 	private Set<OWLAxiom>	axioms;
 
-	private Writer			writer;
+	private PrintWriter		writer;
 
 	@Override
     public void startRendering(Writer writer) {
-		this.writer = writer;
+		this.writer = (writer instanceof PrintWriter ? (PrintWriter)writer : new PrintWriter(writer));
 		axioms = new HashSet<OWLAxiom>();
 	}
 

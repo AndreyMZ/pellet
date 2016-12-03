@@ -38,7 +38,7 @@ import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLObjectUnionOf;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
-import org.semanticweb.owlapi.util.OWLClassExpressionVisitorAdapter;
+import org.semanticweb.owlapi.model.OWLClassExpressionVisitor;
 
 import com.clarkparsia.pellint.format.LintFormat;
 import com.clarkparsia.pellint.format.SimpleLintFormat;
@@ -342,7 +342,7 @@ public class ExistentialExplosionPattern implements OntologyLintPattern {
 
 
 
-abstract class ClassCollector extends OWLClassExpressionVisitorAdapter {
+abstract class ClassCollector implements OWLClassExpressionVisitor {
 	protected Set<OWLClass> m_Classes;
 	
 	public ClassCollector() {

@@ -433,7 +433,7 @@ public class IncrementalClassifier implements OWLReasoner, OWLOntologyChangeList
 		return !getUnsatisfiableClasses().contains( (OWLClass) description );
 	}
 
-	public void ontologiesChanged(List<? extends OWLOntologyChange> changes) throws OWLException {
+	public void ontologiesChanged(List<? extends OWLOntologyChange> changes) {
 		if( !getRootOntology().getOWLOntologyManager().contains( getRootOntology().getOntologyID() ) ) {
 			return;
 		}

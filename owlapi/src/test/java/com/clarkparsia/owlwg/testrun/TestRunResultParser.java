@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
@@ -65,9 +68,11 @@ public class TestRunResultParser {
 		TestRunner<?> runner = runners.get( iri );
 		if( runner == null ) {
 			String name;
-            Collection<OWLAnnotation> s = EntitySearcher.getAnnotations(
+            Stream<OWLAnnotation> ss = EntitySearcher.getAnnotations(
                     i.getIRI(), o, o.getOWLOntologyManager()
                             .getOWLDataFactory().getRDFSLabel());
+			Collector<OWLAnnotation, ?, List<OWLAnnotation>> collector = Collectors.toList();
+			Collection<OWLAnnotation> s = ss.collect(collector);
 			if( s == null || s.isEmpty() ) {
                 name = i.getIRI().toURI().toASCIIString();
             } else {
@@ -131,8 +136,10 @@ public class TestRunResultParser {
 			}
 			runner = getRunner( runnerIris.iterator().next().asOWLNamedIndividual(), o );
 
-            Collection<OWLClassExpression> types = EntitySearcher
+            Stream<OWLClassExpression> typesStream = EntitySearcher
                     .getTypes(i, o);
+			Collector<OWLClassExpression, ?, List<OWLClassExpression>> typesCollector = Collectors.toList();
+			Collection<OWLClassExpression> types = typesStream.collect(typesCollector);
 
 			RunResultType resultType = null;
 			for( RunResultType t : RunResultType.values() ) {
@@ -147,13 +154,15 @@ public class TestRunResultParser {
 			}
 
 			@SuppressWarnings("unchecked")
-            Collection<OWLAnnotation> detailsAnnotations = EntitySearcher
+            Stream<OWLAnnotation> detailsAnnotationsStream = EntitySearcher
                     .getAnnotations(
                             i,
                             o,
                             o.getOWLOntologyManager()
 					.getOWLDataFactory().getOWLAnnotationProperty(
 							DETAILS.getAnnotationPropertyIRI() ) );
+			Collector<OWLAnnotation, ?, List<OWLAnnotation>> annCollector = Collectors.toList();
+			Collection<OWLAnnotation> detailsAnnotations = detailsAnnotationsStream.collect(annCollector);
 			String details = null;
 			int ndetails = detailsAnnotations.size();
 			if( ndetails > 0 ) {

@@ -48,7 +48,7 @@ public class TransTreeTest {
         }
 
         if (!EntitySearcher.isTransitive((OWLObjectProperty) entity,
-                loader.getAllOntologies())) {
+                loader.getAllOntologies().stream())) {
             throw new IllegalArgumentException( "Not a transitive property: " + propertyURI );
         }
 		

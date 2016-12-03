@@ -15,7 +15,7 @@ import org.semanticweb.owlapi.model.OWLNegativeDataPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLNegativeObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLSameIndividualAxiom;
-import org.semanticweb.owlapi.util.OWLAxiomVisitorAdapter;
+import org.semanticweb.owlapi.model.OWLAxiomVisitor;
 
 import aterm.ATermAppl;
 
@@ -25,7 +25,7 @@ import com.clarkparsia.pellet.sparqldl.model.QueryAtomFactory;
 import com.clarkparsia.pellet.sparqldl.model.QueryImpl;
 import com.clarkparsia.pellet.sparqldl.model.QueryResult;
 
-public class EntailmentQueryVisitor extends OWLAxiomVisitorAdapter {
+public class EntailmentQueryVisitor implements OWLAxiomVisitor {
 	
 	private IndividualTermConverter indConv;
 	

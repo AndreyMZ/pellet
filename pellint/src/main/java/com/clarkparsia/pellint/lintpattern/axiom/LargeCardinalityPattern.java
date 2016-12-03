@@ -21,6 +21,8 @@ import com.clarkparsia.pellint.format.SimpleLintFormat;
 import com.clarkparsia.pellint.model.Lint;
 import com.clarkparsia.pellint.model.Severity;
 import com.clarkparsia.pellint.util.OWLDeepEntityVisitorAdapter;
+import java.util.Collection;
+import org.semanticweb.owlapi.model.OWLEntity;
 
 /**
  * <p>
@@ -108,19 +110,19 @@ class CardinalitySizeCollector extends OWLDeepEntityVisitorAdapter {
 		return m_Size;
 	}
 
-	public void visit(OWLObjectExactCardinality card) {
+	public Collection<OWLEntity> visit(OWLObjectExactCardinality card) {
 		process(card);
-		super.visit(card);
+		return super.visit(card);
 	}
 	
-	public void visit(OWLObjectMaxCardinality card) {
+	public Collection<OWLEntity> visit(OWLObjectMaxCardinality card) {
 		process(card);
-		super.visit(card);
+		return super.visit(card);
 	}
 	
-	public void visit(OWLObjectMinCardinality card) {
+	public Collection<OWLEntity> visit(OWLObjectMinCardinality card) {
 		process(card);
-		super.visit(card);
+		return super.visit(card);
 	}
 	
 	protected void process(OWLObjectCardinalityRestriction card) {

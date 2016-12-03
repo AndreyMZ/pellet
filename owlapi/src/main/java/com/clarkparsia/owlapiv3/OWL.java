@@ -437,7 +437,7 @@ public class OWL {
 	}
 
 	
-	public static OWLObjectInverseOf inverse(OWLObjectPropertyExpression p) {
+	public static OWLObjectInverseOf inverse(OWLObjectProperty p) {
 		return factory.getOWLObjectInverseOf( p );
 	}
 

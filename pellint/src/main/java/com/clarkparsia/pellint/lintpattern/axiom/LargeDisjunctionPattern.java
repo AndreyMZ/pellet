@@ -6,9 +6,12 @@
 
 package com.clarkparsia.pellint.lintpattern.axiom;
 
+import java.util.Collection;
+
 import org.semanticweb.owlapi.model.OWLClassAxiom;
 import org.semanticweb.owlapi.model.OWLDisjointClassesAxiom;
 import org.semanticweb.owlapi.model.OWLDisjointUnionAxiom;
+import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLEquivalentClassesAxiom;
 import org.semanticweb.owlapi.model.OWLObjectUnionOf;
 import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
@@ -105,11 +108,11 @@ class DisjunctionSizeCollector extends OWLDeepEntityVisitorAdapter {
 		return m_Size;
 	}
 	
-	public void visit(OWLObjectUnionOf union) {
+	public Collection<OWLEntity> visit(OWLObjectUnionOf union) {
 		int size = union.getOperands().size();
 		if (size > m_Size) {
 			m_Size = size;
 		}
-		super.visit(union);
+		return super.visit(union);
 	}
 }

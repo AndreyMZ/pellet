@@ -8,7 +8,7 @@ package com.clarkparsia.pellint.lintpattern.axiom;
 
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.util.OWLAxiomVisitorAdapter;
+import org.semanticweb.owlapi.model.OWLAxiomVisitor;
 
 import com.clarkparsia.pellint.lintpattern.LintPattern;
 import com.clarkparsia.pellint.model.Lint;
@@ -30,7 +30,7 @@ import com.clarkparsia.pellint.model.Lint;
  * 
  * @author Harris Lin
  */
-public abstract class AxiomLintPattern extends OWLAxiomVisitorAdapter implements LintPattern {
+public abstract class AxiomLintPattern implements OWLAxiomVisitor, LintPattern {
 	private Lint m_Lint;
 	private OWLOntology m_Ontology;
 	

@@ -256,11 +256,6 @@ public class PelletClassify extends PelletCmdApp {
 			
 			return null;
 		}
-        catch( OWLException e ) {
-        	logger.log( Level.WARNING, "Unable to incrementally update the classifier. Pellet will perform full classification: " + e );
-	        
-        	return null;
-        }
 	}
 	
 	/**
